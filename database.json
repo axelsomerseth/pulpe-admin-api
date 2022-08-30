@@ -1,0 +1,16 @@
+{
+	"dev": {
+		"driver": "pg",
+		"filename": "./database.json"
+	},
+	"pg": {
+		"driver": "pg",
+		"user": "axelsomerseth",
+		"password": "",
+		"host": "localhost",
+		"database": "pulpe_admin",
+		"port": 5432,
+		"ssl": "true",
+		"schema": "public"
+	}
+}
