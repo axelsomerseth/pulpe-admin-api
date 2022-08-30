@@ -49,4 +49,14 @@ VALUES
 		CURRENT_TIMESTAMP,
 		CURRENT_TIMESTAMP,
 		NULL
+	),
+	(
+		'Product Test Name',
+		'Product Test Description',
+		4,
+		100,
+		10,
+		CURRENT_TIMESTAMP,
+		CURRENT_TIMESTAMP,
+		NULL
 	);
