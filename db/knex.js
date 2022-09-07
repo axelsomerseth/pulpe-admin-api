@@ -1,9 +1,6 @@
-const pg = require("knex");
 const environment = process.env.NODE_ENV || "development";
+const pg = require("knex");
 const config = require("../knexfile")[environment];
-
-// TODO: Remove this
-console.log(config);
 
 const connection = pg(config);
 

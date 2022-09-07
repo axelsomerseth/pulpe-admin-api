@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { indexHandler } = require("../handlers/index");
 
-router.get("/", (req, res, next) => {
-  console.debug(new Date(req.requestTime).toString());
-  res.end(`Welcome to Inventory App.`);
-});
+router.get("/", indexHandler);
 
 module.exports = router;
