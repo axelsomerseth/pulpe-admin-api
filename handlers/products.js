@@ -1,34 +1,39 @@
 // @ts-check
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
+const productsRepository = require("../repository/products");
 
 /**
  * @param {import("express").Request} req
  * @param {import("express").Response} res
  * @param {import("express").NextFunction} next
  */
-const listProducts = (req, res, next) => {
+const listProducts = async (req, res, next) => {
   const page = req.query.page || 1;
-  const limit = req.query.limit || 15;
-  res.end(`GET items list. \nPage: ${page}. Limit: ${limit}.`);
+  const size = req.query.size || 10;
+  const list = productsRepository.listProducts();
+  res.json(list);
 };
 
 const readProduct = (req, res) => {
   res.end(`GET item by id. \nItem Id: ${req.params.itemId}`);
 };
 
-const createProduct = (req, res) => {
+const createProduct = async (req, res) => {
   const newProduct = {
     id: 1,
-    uuid: uuidv4(),
     ...req.body,
   };
-  res.json(newProduct);
+  const created = await productsRepository.addProduct(newProduct);
+  if (created.length) {
+    res.json(created);
+  } else {
+    res.sendStatus(500);
+  }
 };
 
 const updateProduct = (req, res) => {
   const updatedProduct = {
     id: parseInt(req.params.itemId),
-    uuid: uuidv4(),
     ...req.body,
   };
   res.json(updatedProduct);

@@ -20,7 +20,6 @@ const addCategory = async (category) => {
       name: category.name,
       description: category.description,
       created_at: new Date(),
-      updated_at: new Date(),
     });
 };
 
