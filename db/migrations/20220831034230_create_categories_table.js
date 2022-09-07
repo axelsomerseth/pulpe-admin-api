@@ -7,9 +7,9 @@ exports.up = function (knex) {
     table.increments("id");
     table.string("name", 60).notNullable();
     table.string("description", 255);
-    table.timestamp("created_at", { useTz: true }).defaultTo(knex.fn.now());
-    table.timestamp("updated_at", { useTz: true }).defaultTo(knex.fn.now());
-    table.timestamp("deleted_at", { useTz: true }).defaultTo(knex.fn.now());
+    table.timestamp("created_at", { useTz: true }).defaultTo();
+    table.timestamp("updated_at", { useTz: true }).defaultTo();
+    table.timestamp("deleted_at", { useTz: true }).defaultTo();
   });
 };
 
