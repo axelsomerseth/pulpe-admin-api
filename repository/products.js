@@ -3,7 +3,21 @@ const knex = require("../db/knex");
 const TABLE_NAME = "products";
 
 const listProducts = async () => {
-  return await knex.select().from(TABLE_NAME).orderBy("id", "asc");
+  return await knex
+    .select([
+      "products.id",
+      "products.name",
+      "products.description",
+      // "products.category_id",
+      { category: "categories.name" },
+      "products.price",
+      "products.stock",
+      "products.created_at",
+      "products.updated_at",
+    ])
+    .from(TABLE_NAME)
+    .innerJoin("categories", "categories.id", "products.category_id")
+    .orderBy("categories.id", "asc");
 };
 
 const getProductById = async (productId) => {

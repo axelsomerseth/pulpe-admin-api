@@ -10,12 +10,22 @@ const productsRepository = require("../repository/products");
 const listProducts = async (req, res, next) => {
   const page = req.query.page || 1;
   const size = req.query.size || 10;
-  const list = productsRepository.listProducts();
-  res.json(list);
+  const list = await productsRepository.listProducts();
+  res.json({
+    page,
+    size,
+    data: list,
+  });
 };
 
-const readProduct = (req, res) => {
-  res.end(`GET item by id. \nItem Id: ${req.params.itemId}`);
+const readProduct = async (req, res) => {
+  const productId = req.params.itemId;
+  const found = await productsRepository.getProductById(productId);
+  if (found.length) {
+    res.json(found[0]);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 const createProduct = async (req, res) => {
@@ -25,7 +35,7 @@ const createProduct = async (req, res) => {
   };
   const created = await productsRepository.addProduct(newProduct);
   if (created.length) {
-    res.json(created);
+    res.json(created[0]);
   } else {
     res.sendStatus(500);
   }
