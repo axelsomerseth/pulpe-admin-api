@@ -1,45 +1,70 @@
-const knex = require("../db/knex");
+const { response } = require("express");
+const categoriesRepository = require("../repository/categories");
 
-const listCategories = (req, res) => {
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @param {import("express").NextFunction} next
+ */
+const listCategories = async (req, res, next) => {
   const page = req.query.page || 1;
-  const limit = req.query.limit || 15;
-  res.end(`GET categories list. \nPage: ${page}. Limit: ${limit}.`);
+  const size = req.query.size || 10;
+  const list = await categoriesRepository.listCategories();
+  res.send({
+    page,
+    size,
+    data: list,
+  });
 };
 
-const readCategory = (req, res) => {
-  if (!isNaN(req.params.categoryId)) {
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+const readCategory = async (req, res) => {
+  const categoryId = req.params.categoryId;
+  const found = await categoriesRepository.getCategoryById(categoryId);
+  if (found.length) {
+    res.send(found[0]);
+  } else {
+    res.sendStatus(404);
   }
-  knex
-    .select()
-    .from("categories")
-    .where("id", req.params.categoryId)
-    .then(function (todo) {
-      // res.end(`GET a category by id. \nCategory Id: ${req.params.categoryId}`);
-      res.send(todo);
-    });
 };
 
-const createCategory = (req, res) => {
+const createCategory = async (req, res) => {
   const newCategory = {
-    id: 1,
-    ...req.body,
+    name: req.body.name,
+    description: req.body.description,
   };
-
-  // res.end("POST - Create a category.");
-  res.json(newCategory);
+  const created = await categoriesRepository.addCategory(newCategory);
+  if (created.length) {
+    res.sendStatus(201);
+  } else {
+    res.sendStatus(500);
+  }
 };
 
-const updateCategory = (req, res) => {
-  const updatedCategory = {
+const updateCategory = async (req, res) => {
+  const editedCategory = {
     id: parseInt(req.params.categoryId),
     ...req.body,
   };
-  // res.end(`PUT - Update a category. \nCategory Id: ${req.params.categoryId}`);
-  res.json(updatedCategory);
+  const updated = await categoriesRepository.editCategory(editedCategory);
+  if (updated.length) {
+    res.json(updated[0]);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
-const deleteCategory = (req, res, next) => {
-  res.end(`DELETE a category. \nCategory Id: ${req.params.categoryId}`);
+const deleteCategory = async (req, res, next) => {
+  const categoryId = req.params.categoryId;
+  const deleted = await categoriesRepository.deleteCategory(categoryId);
+  if (deleted.deletedRows) {
+    res.sendStatus(204);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 module.exports = {
