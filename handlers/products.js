@@ -54,8 +54,14 @@ const updateProduct = async (req, res) => {
   }
 };
 
-const deleteProduct = (req, res) => {
-  res.end(`DELETE an item. \nItem Id: ${req.params.itemId}`);
+const deleteProduct = async (req, res) => {
+  const itemId = req.params.itemId;
+  const deleted = await productsRepository.deleteProduct(itemId);
+  if (deleted.deletedRows) {
+    res.sendStatus(204);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 module.exports = {
