@@ -41,12 +41,17 @@ const createProduct = async (req, res) => {
   }
 };
 
-const updateProduct = (req, res) => {
-  const updatedProduct = {
+const updateProduct = async (req, res) => {
+  const editedProduct = {
     id: parseInt(req.params.itemId),
     ...req.body,
   };
-  res.json(updatedProduct);
+  const updated = await productsRepository.editProduct(editedProduct);
+  if (updated.length) {
+    res.json(updated[0]);
+  } else {
+    res.sendStatus(404);
+  }
 };
 
 const deleteProduct = (req, res) => {
