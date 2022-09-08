@@ -10,12 +10,12 @@ const {
 
 router.get("/", listProducts);
 
-router.get("/:itemId", readProduct);
+router.get("/:productId", readProduct);
 
 router.post("/", createProduct);
 
-router.put("/:itemId", updateProduct);
+router.put("/:productId", updateProduct);
 
-router.delete("/:itemId", deleteProduct);
+router.delete("/:productId", deleteProduct);
 
 module.exports = router;

@@ -19,7 +19,7 @@ const listProducts = async (req, res, next) => {
 };
 
 const readProduct = async (req, res) => {
-  const productId = req.params.itemId;
+  const productId = req.params.productId;
   const found = await productsRepository.getProductById(productId);
   if (found.length) {
     res.json(found[0]);
@@ -43,7 +43,7 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const editedProduct = {
-    id: parseInt(req.params.itemId),
+    id: parseInt(req.params.productId),
     ...req.body,
   };
   const updated = await productsRepository.editProduct(editedProduct);
@@ -55,8 +55,8 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  const itemId = req.params.itemId;
-  const deleted = await productsRepository.deleteProduct(itemId);
+  const productId = req.params.productId;
+  const deleted = await productsRepository.deleteProduct(productId);
   if (deleted.deletedRows) {
     res.sendStatus(204);
   } else {

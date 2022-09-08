@@ -4,7 +4,7 @@ const logger = require("morgan");
 
 // import routes
 const indexRouter = require("./routes/index");
-const itemsRouter = require("./routes/items");
+const productsRouter = require("./routes/products");
 const categoriesRouter = require("./routes/categories");
 const requestTime = require("./middlewares/requestTime");
 
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false })); // for parsing application/x-w
 
 // define routes
 app.use("/", indexRouter);
-app.use("/items", itemsRouter);
+app.use("/products", productsRouter);
 app.use("/categories", categoriesRouter);
 
 module.exports = app;
