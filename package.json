@@ -13,7 +13,13 @@
     "start:dev": "nodemon index.js",
     "test": "jest",
     "deploy": "git push heroku-production main",
-    "heroku:logs": "heroku logs --tail"
+    "heroku:logs": "heroku logs --tail",
+    "heroku:status": "heroku ps",
+    "heroku:local": "heroku local web",
+    "heroku:open": "heroku open",
+    "heroku:console": "heroku run bash",
+    "heroku:config": "heroku config",
+    "heroku:addons": "heroku addons"
   },
   "repository": {
     "type": "git",
