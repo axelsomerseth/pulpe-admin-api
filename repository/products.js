@@ -25,7 +25,7 @@ const getProductById = async (productId) => {
 };
 
 const addProduct = async (product) => {
-  return await knex(TABLE_NAME)
+  return await knex
     .returning([
       "id",
       "name",
@@ -42,12 +42,13 @@ const addProduct = async (product) => {
       category_id: product.categoryId,
       price: product.price,
       stock: product.stock,
-      created_at: new Date(),
-    });
+      created_at: product.created_at || new Date(),
+    })
+    .into(TABLE_NAME);
 };
 
 const editProduct = async (product) => {
-  return await knex(TABLE_NAME)
+  return await knex
     .returning([
       "id",
       "name",
@@ -58,19 +59,23 @@ const editProduct = async (product) => {
       "created_at",
       "updated_at",
     ])
-    .where({ id: product.id })
     .update({
       name: product.name,
       description: product.description,
       category_id: product.categoryId,
       price: product.price,
       stock: product.stock,
-      updated_at: new Date(),
-    });
+      updated_at: product.updated_at || new Date(),
+    })
+    .from(TABLE_NAME)
+    .where({ id: product.id });
 };
 
 const deleteProduct = async (productId) => {
-  const deletedRows = await knex(TABLE_NAME).where({ id: productId }).del();
+  const deletedRows = await knex
+    .del()
+    .from(TABLE_NAME)
+    .where({ id: productId });
   return { deletedRows };
 };
 

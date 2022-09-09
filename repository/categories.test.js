@@ -55,6 +55,7 @@ describe("categories repository", () => {
       "updated_at",
     ]);
     expect(querybuilder.insert).toHaveBeenCalledWith(category);
+    expect(querybuilder.into).toHaveBeenCalledWith("categories");
   });
 
   test("should edit a category", async () => {
@@ -83,6 +84,7 @@ describe("categories repository", () => {
     ]);
     expect(querybuilder.where).toHaveBeenCalledWith({ id: categoryId });
     expect(querybuilder.update).toHaveBeenCalledWith(category);
+    expect(querybuilder.from).toHaveBeenCalledWith("categories");
   });
 
   test("should remove a category", async () => {
@@ -95,9 +97,9 @@ describe("categories repository", () => {
 
     // assert
     expect(querybuilder.deletedRows).toBeDefined();
+    expect(querybuilder.deletedRows.del).toHaveBeenCalled();
     expect(querybuilder.deletedRows.where).toHaveBeenCalledWith({
       id: categoryId,
     });
-    expect(querybuilder.deletedRows.del).toHaveBeenCalled();
   });
 });

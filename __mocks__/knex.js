@@ -2,6 +2,7 @@ const knex = jest.createMockFromModule("knex");
 
 let querybuilder = {
   select: jest.fn().mockReturnThis(),
+  innerJoin: jest.fn().mockReturnThis(),
   from: jest.fn().mockReturnThis(),
   where: jest.fn().mockReturnThis(),
   orderBy: jest.fn().mockReturnThis(),
