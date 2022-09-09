@@ -12,6 +12,7 @@
     "start": "node index.js",
     "start:dev": "nodemon index.js",
     "test": "jest",
+    "migrate:latest": "knex migrate:latest",
     "deploy": "git push heroku-production main",
     "heroku:logs": "heroku logs --tail",
     "heroku:status": "heroku ps",
