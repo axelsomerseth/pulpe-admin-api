@@ -14,28 +14,33 @@ const getCategoryById = async (categoryId) => {
 };
 
 const addCategory = async (category) => {
-  return await knex(TABLE_NAME)
+  return await knex
     .returning(["id", "name", "description", "created_at", "updated_at"])
     .insert({
       name: category.name,
       description: category.description,
-      created_at: new Date(),
-    });
+      created_at: category.created_at || new Date(),
+    })
+    .into(TABLE_NAME);
 };
 
 const editCategory = async (category) => {
-  return await knex(TABLE_NAME)
+  return await knex
     .returning(["id", "name", "description", "created_at", "updated_at"])
     .where({ id: category.id })
     .update({
       name: category.name,
       description: category.description,
-      updated_at: new Date(),
-    });
+      updated_at: category.updated_at || new Date(),
+    })
+    .from(TABLE_NAME);
 };
 
 const deleteCategory = async (categoryId) => {
-  const deletedRows = await knex(TABLE_NAME).where({ id: categoryId }).del();
+  const deletedRows = await knex
+    .where({ id: categoryId })
+    .del()
+    .from(TABLE_NAME);
   return { deletedRows };
 };
 
