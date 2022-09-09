@@ -12,7 +12,8 @@
     "start": "node index.js",
     "start:dev": "nodemon index.js",
     "test": "jest",
-    "deploy": "git push heroku-production main"
+    "deploy": "git push heroku-production main",
+    "heroku:logs": "heroku logs --tail"
   },
   "repository": {
     "type": "git",
