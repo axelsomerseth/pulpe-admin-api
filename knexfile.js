@@ -7,6 +7,7 @@ dotenv.config();
  */
 module.exports = {
   development: {
+    debug: true,
     client: "postgresql",
     connection: process.env.DATABASE_URL,
     pool: {
@@ -22,6 +23,7 @@ module.exports = {
     },
   },
   production: {
+    debug: true,
     client: "postgresql",
     connection: process.env.DATABASE_URL,
     pool: {
