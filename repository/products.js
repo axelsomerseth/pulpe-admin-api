@@ -17,7 +17,7 @@ const listProducts = async () => {
     ])
     .from(TABLE_NAME)
     .innerJoin("categories", "categories.id", "products.category_id")
-    .orderBy("categories.id", "asc");
+    .orderBy("products.id", "asc");
 };
 
 const getProductById = async (productId) => {
