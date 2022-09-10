@@ -1,5 +1,5 @@
 {
-  "name": "pulpe-admin",
+  "name": "pulpe-admin-api-api",
   "version": "1.0.0",
   "description": "> Una pulpería era un establecimiento comercial de venta al menudeo de artículos de todo tipo (entre ellos, comestibles, bebidas, herramientas y ropa), ubicado en el campo o en la ciudad y en general montado con un capital modesto. Además de un puesto de venta, constituía un lugar de consumo y recreación donde se podía comer, beber, cantar o practicar distintos juegos. Al comerciante que la poseía o administraba se lo denominaba pulpero.",
   "main": "index.js",
@@ -25,15 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axelsomerseth/pulpe-admin.git"
+    "url": "git+https://github.com/axelsomerseth/pulpe-admin-api.git"
   },
   "keywords": [],
   "author": "Axel Somerseth Cordova <axelsomerseth@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/axelsomerseth/pulpe-admin/issues"
+    "url": "https://github.com/axelsomerseth/pulpe-admin-api/issues"
   },
-  "homepage": "https://github.com/axelsomerseth/pulpe-admin#readme",
+  "homepage": "https://github.com/axelsomerseth/pulpe-admin-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
