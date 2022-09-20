@@ -31,6 +31,10 @@ const readCategory = async (req, res) => {
   }
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const createCategory = async (req, res) => {
   const newCategory = {
     name: req.body.name,
@@ -38,7 +42,8 @@ const createCategory = async (req, res) => {
   };
   const created = await categoriesRepository.addCategory(newCategory);
   if (created.length) {
-    res.sendStatus(201);
+    res.status(201);
+    res.send(created[0]);
   } else {
     res.sendStatus(500);
   }
