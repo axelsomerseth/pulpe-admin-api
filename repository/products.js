@@ -8,10 +8,10 @@ const listProducts = async () => {
       "products.id",
       "products.name",
       "products.description",
-      // "products.category_id",
-      { category: "categories.name" },
       "products.price",
       "products.stock",
+      "products.category_id",
+      // { category: "categories.name" },
       "products.created_at",
       "products.updated_at",
     ])

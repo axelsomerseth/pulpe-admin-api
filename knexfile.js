@@ -11,9 +11,10 @@ module.exports = {
     client: "postgresql",
     connection: {
       connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      // * NO SSL in development.
+      // ssl: {
+      //   rejectUnauthorized: false,
+      // },
     },
     pool: {
       min: 2,
@@ -28,7 +29,6 @@ module.exports = {
     },
   },
   production: {
-    debug: true,
     client: "postgresql",
     connection: {
       connectionString: process.env.DATABASE_URL,
