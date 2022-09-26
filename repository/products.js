@@ -39,7 +39,7 @@ const addProduct = async (product) => {
     .insert({
       name: product.name,
       description: product.description,
-      category_id: product.categoryId,
+      category_id: product.category_id,
       price: product.price,
       stock: product.stock,
       created_at: product.created_at || new Date(),
@@ -62,7 +62,7 @@ const editProduct = async (product) => {
     .update({
       name: product.name,
       description: product.description,
-      category_id: product.categoryId,
+      category_id: product.category_id,
       price: product.price,
       stock: product.stock,
       updated_at: product.updated_at || new Date(),
