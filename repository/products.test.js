@@ -40,7 +40,7 @@ describe("products repository", () => {
       name: "Corona 12 fl. oz.",
       description:
         "It is often served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavor.",
-      categoryId: 1,
+      category_id: 1,
       price: 30.0,
       stock: 24,
       created_at: new Date(),
@@ -64,7 +64,7 @@ describe("products repository", () => {
     expect(querybuilder.insert).toHaveBeenCalledWith({
       name: product.name,
       description: product.description,
-      category_id: product.categoryId,
+      category_id: product.category_id,
       price: product.price,
       stock: product.stock,
       created_at: product.created_at,
@@ -79,7 +79,7 @@ describe("products repository", () => {
       name: "Corona 12 fl. oz.",
       description:
         "It is often served with a wedge of lime or lemon in the neck of the bottle to add tartness and flavor.",
-      categoryId: 1,
+      category_id: 1,
       price: 30.0,
       stock: 24,
       updated_at: new Date(),
@@ -103,7 +103,7 @@ describe("products repository", () => {
     expect(querybuilder.update).toHaveBeenCalledWith({
       name: product.name,
       description: product.description,
-      category_id: product.categoryId,
+      category_id: product.category_id,
       price: product.price,
       stock: product.stock,
       updated_at: product.updated_at,
