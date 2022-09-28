@@ -26,7 +26,25 @@ describe("categories handler", () => {
     expect(res._getData()).toBeDefined();
   });
 
-  test.todo("should create a category successfully");
+  test("should create a category successfully", async () => {
+    // arrange
+    const { createCategory } = require("./categories");
+    const req = httpMocks.createRequest({
+      method: "POST",
+      body: {
+        name: "Test name X",
+        description: "Test description X",
+      },
+    });
+    const res = httpMocks.createResponse();
+
+    // act
+    await createCategory(req, res);
+
+    // assert
+    expect(res.statusCode).toEqual(201);
+    expect(res._getData()).toBeDefined();
+  });
 
   test.todo("should read a category successfully");
 
