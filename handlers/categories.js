@@ -45,7 +45,8 @@ const createCategory = async (req, res) => {
     res.status(201);
     res.send(created[0]);
   } else {
-    res.sendStatus(500);
+    res.status(500);
+    res.send();
   }
 };
 
@@ -60,6 +61,7 @@ const updateCategory = async (req, res) => {
   };
   const updated = await categoriesRepository.editCategory(editedCategory);
   if (updated.length) {
+    res.status(200);
     res.json(updated[0]);
   } else {
     res.sendStatus(404);
