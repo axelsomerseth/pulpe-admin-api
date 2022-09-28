@@ -4,7 +4,7 @@
  * @param {import("express").NextFunction} next
  */
 const indexHandler = (req, res, next) => {
-  res.end(`Welcome to Pulpe Admin REST API.`);
+  res.send(`Welcome to Pulpe Admin REST API.`);
 };
 
 module.exports = {
