@@ -49,6 +49,10 @@ const createCategory = async (req, res) => {
   }
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const updateCategory = async (req, res) => {
   const editedCategory = {
     id: parseInt(req.params.categoryId),
@@ -62,7 +66,11 @@ const updateCategory = async (req, res) => {
   }
 };
 
-const deleteCategory = async (req, res, next) => {
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+const deleteCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   const deleted = await categoriesRepository.deleteCategory(categoryId);
   if (deleted.deletedRows) {

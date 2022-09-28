@@ -18,6 +18,10 @@ const listProducts = async (req, res, next) => {
   });
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const readProduct = async (req, res) => {
   const productId = req.params.productId;
   const found = await productsRepository.getProductById(productId);
@@ -28,6 +32,10 @@ const readProduct = async (req, res) => {
   }
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const createProduct = async (req, res) => {
   const newProduct = {
     id: 1,
@@ -41,6 +49,10 @@ const createProduct = async (req, res) => {
   }
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const updateProduct = async (req, res) => {
   const editedProduct = {
     id: parseInt(req.params.productId),
@@ -54,6 +66,10 @@ const updateProduct = async (req, res) => {
   }
 };
 
+/**
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
 const deleteProduct = async (req, res) => {
   const productId = req.params.productId;
   const deleted = await productsRepository.deleteProduct(productId);
