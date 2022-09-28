@@ -10,12 +10,14 @@ let querybuilder = {
   into: jest.fn().mockReturnThis(),
   update: jest.fn().mockReturnThis(),
   del: jest.fn().mockReturnThis(),
+  as: jest.fn().mockReturnThis(),
   returning: jest.fn().mockReturnThis(),
   toSQL: jest.fn().mockReturnThis(),
   toNative: jest.fn(),
+  debug: jest.fn().mockReturnThis(),
+  connection: jest.fn().mockReturnThis(),
+  context: jest.fn().mockResolvedValue({ client: { driver: {}, pool: {} } }),
 };
-
-// console.log(querybuilder);
 
 const knexMock = jest.fn().mockReturnValue(querybuilder);
 knex.mockImplementation(knexMock);
