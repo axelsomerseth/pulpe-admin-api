@@ -40,15 +40,74 @@ describe("categories handler", () => {
 
     // act
     await createCategory(req, res);
+    const responseBody = res._getData();
 
     // assert
     expect(res.statusCode).toEqual(201);
-    expect(res._getData()).toBeDefined();
+    expect(responseBody).toBeDefined();
+    expect(responseBody.fakeID).toEqual(1);
   });
 
-  test.todo("should read a category successfully");
+  test("should read a category successfully", async () => {
+    // arrange
+    const { readCategory } = require("./categories");
+    const req = httpMocks.createRequest({
+      method: "GET",
+      params: {
+        categoryId: 1,
+      },
+    });
+    const res = httpMocks.createResponse();
 
-  test.todo("should update a category successfully");
+    // act
+    await readCategory(req, res);
+    const responseBody = res._getData();
 
-  test.todo("should delete a category successfully");
+    // assert
+    expect(res.statusCode).toEqual(200);
+    expect(responseBody).toBeDefined();
+    expect(responseBody.fakeID).toEqual(1);
+  });
+
+  test("should update a category successfully", async () => {
+    // arrange
+    const { updateCategory } = require("./categories");
+    const req = httpMocks.createRequest({
+      method: "PUT",
+      params: {
+        categoryId: 1,
+      },
+      body: {
+        name: "Mocked name",
+        description: "Mocked description",
+      },
+    });
+    const res = httpMocks.createResponse();
+
+    // act
+    await updateCategory(req, res);
+    const responseBody = res._getData();
+
+    // assert
+    expect(res.statusCode).toEqual(200);
+    expect(responseBody).toBeDefined();
+  });
+
+  test("should delete a category successfully", async () => {
+    // arrange
+    const { deleteCategory } = require("./categories");
+    const req = httpMocks.createRequest({
+      method: "DELETE",
+      params: {
+        categoryId: 1,
+      },
+    });
+    const res = httpMocks.createResponse();
+
+    // act
+    await deleteCategory(req, res);
+
+    // assert
+    expect(res.statusCode).toEqual(204);
+  });
 });

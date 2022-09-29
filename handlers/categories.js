@@ -25,6 +25,7 @@ const readCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   const found = await categoriesRepository.getCategoryById(categoryId);
   if (found.length) {
+    res.status(200);
     res.send(found[0]);
   } else {
     res.sendStatus(404);

@@ -18,6 +18,7 @@ let querybuilder = {
   connection: jest.fn().mockReturnThis(),
   context: jest.fn().mockResolvedValue({ client: { driver: {}, pool: {} } }),
   length: jest.fn().mockResolvedValue(1),
+  0: { fakeID: 1, fakeName: "Mocked name" },
 };
 
 const knexMock = jest.fn().mockReturnValue(querybuilder);
