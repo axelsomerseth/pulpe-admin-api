@@ -1,12 +1,10 @@
-const express = require("express");
-const knex = require("knex");
 const httpMocks = require("node-mocks-http");
 
 jest.mock("express");
 jest.mock("knex");
 
 describe("categories handler", () => {
-  test("should return a list of categories successfully", async () => {
+  test("listCategories should respond correctly", async () => {
     // arrange
     const { listCategories } = require("./categories");
     const req = httpMocks.createRequest({
@@ -26,7 +24,7 @@ describe("categories handler", () => {
     expect(res._getData()).toBeDefined();
   });
 
-  test("should create a category successfully", async () => {
+  test("createCategory should respond correctly", async () => {
     // arrange
     const { createCategory } = require("./categories");
     const req = httpMocks.createRequest({
@@ -48,7 +46,7 @@ describe("categories handler", () => {
     expect(responseBody.fakeID).toEqual(1);
   });
 
-  test("should read a category successfully", async () => {
+  test("readCategory should respond correctly", async () => {
     // arrange
     const { readCategory } = require("./categories");
     const req = httpMocks.createRequest({
@@ -69,7 +67,7 @@ describe("categories handler", () => {
     expect(responseBody.fakeID).toEqual(1);
   });
 
-  test("should update a category successfully", async () => {
+  test("updateCategory should respond correctly", async () => {
     // arrange
     const { updateCategory } = require("./categories");
     const req = httpMocks.createRequest({
@@ -93,7 +91,7 @@ describe("categories handler", () => {
     expect(responseBody).toBeDefined();
   });
 
-  test("should delete a category successfully", async () => {
+  test("deleteCategory should respond correctly", async () => {
     // arrange
     const { deleteCategory } = require("./categories");
     const req = httpMocks.createRequest({
