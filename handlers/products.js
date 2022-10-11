@@ -7,8 +7,8 @@ const productsRepository = require("../repository/products");
  * @param {import("express").NextFunction} next
  */
 const listProducts = async (req, res, next) => {
-  const page = parseInt(req.query.page) || 1;
-  const size = parseInt(req.query.size) || 10;
+  const page = parseInt(req.query.page || 1);
+  const size = parseInt(req.query.size || 10);
   const search = req.query.search || "";
   let list = [];
   if (search) {

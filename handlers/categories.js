@@ -6,8 +6,8 @@ const categoriesRepository = require("../repository/categories");
  * @param {import("express").NextFunction} next
  */
 const listCategories = async (req, res, next) => {
-  const page = req.query.page || 1;
-  const size = req.query.size || 10;
+  const page = parseInt(req.query.page || 1);
+  const size = parseInt(req.query.size || 10);
   const list = await categoriesRepository.listCategories();
   res.send({
     page,
