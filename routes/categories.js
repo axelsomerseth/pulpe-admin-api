@@ -7,14 +7,15 @@ const {
   updateCategory,
   deleteCategory,
 } = require("../handlers/categories");
+const { categorySchema, validate } = require("../middlewares/validate");
 
 router.get("/", listCategories);
 
 router.get("/:categoryId", readCategory);
 
-router.post("/", createCategory);
+router.post("/", validate(categorySchema.create), createCategory);
 
-router.put("/:categoryId", updateCategory);
+router.put("/:categoryId", validate(categorySchema.update), updateCategory);
 
 router.delete("/:categoryId", deleteCategory);
 
