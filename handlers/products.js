@@ -1,4 +1,3 @@
-// @ts-check
 // const { v4: uuidv4 } = require("uuid");
 const productsRepository = require("../repository/products");
 
@@ -8,12 +7,18 @@ const productsRepository = require("../repository/products");
  * @param {import("express").NextFunction} next
  */
 const listProducts = async (req, res, next) => {
-  const page = req.query.page || 1;
-  const size = req.query.size || 10;
-  const list = await productsRepository.listProducts();
+  const page = parseInt(req.query.page) || 1;
+  const size = parseInt(req.query.size) || 10;
+  const search = req.query.search || "";
+  let list = [];
+  if (search) {
+    list = await productsRepository.searchForProducts(search);
+  } else {
+    list = await productsRepository.listProducts();
+  }
   res.json({
-    page,
-    size,
+    page: 1,
+    size: list.length,
     data: list,
   });
 };

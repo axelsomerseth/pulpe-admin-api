@@ -20,6 +20,25 @@ const listProducts = async () => {
     .orderBy("products.id", "asc");
 };
 
+const searchForProducts = async (search) => {
+  return await knex
+    .select([
+      "products.id",
+      "products.name",
+      "products.description",
+      "products.price",
+      "products.stock",
+      "products.category_id",
+      // { category: "categories.name" },
+      "products.created_at",
+      "products.updated_at",
+    ])
+    .from(TABLE_NAME)
+    .innerJoin("categories", "categories.id", "products.category_id")
+    .orderBy("products.id", "asc")
+    .whereILike("products.name", `%${search}%`);
+};
+
 const getProductById = async (productId) => {
   return await knex.select().from(TABLE_NAME).where("id", productId);
 };
@@ -81,6 +100,7 @@ const deleteProduct = async (productId) => {
 
 module.exports = {
   listProducts,
+  searchForProducts,
   getProductById,
   addProduct,
   editProduct,
