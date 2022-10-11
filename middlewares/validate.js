@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const express = require("express");
 
 const categorySchema = {
   create: Joi.object({
@@ -35,9 +34,9 @@ const productSchema = {
  */
 const validate = (schema) => {
   /**
-   * @param {express.Request} req
-   * @param {express.Response} res
-   * @param {express.NextFunction} next
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   * @param {import("express").NextFunction} next
    */
   return (req, res, next) => {
     const result = schema.validate({ ...req.body });
