@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const { engine } = require("express-handlebars");
+const compression = require("compression");
+const helmet = require("helmet");
 
 // import routes
 const indexRouter = require("./routes/index");
@@ -21,6 +23,8 @@ app.use(logger("dev"));
 app.use(cors()); // enable All CORS Requests
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
+app.use(compression()); // 3rd party plugin: compresses all the responses
+app.use(helmet()); // 3rd party plugin: secure your Express apps by setting various HTTP headers
 
 // define routes
 app.use("/", indexRouter);
