@@ -1,36 +1,6 @@
-const Joi = require("joi");
-
-const categorySchema = {
-  create: Joi.object({
-    name: Joi.string().max(60).required(),
-    description: Joi.string().max(255),
-  }),
-  update: Joi.object({
-    name: Joi.string().max(60).required(),
-    description: Joi.string().max(255),
-  }),
-};
-
-const productSchema = {
-  create: Joi.object({
-    name: Joi.string().max(100).required(),
-    description: Joi.string().max(255).required(),
-    category_id: Joi.number().required(),
-    price: Joi.number().required(),
-    stock: Joi.number().required(),
-  }),
-  update: Joi.object({
-    name: Joi.string().max(100).required(),
-    description: Joi.string().max(255).required(),
-    category_id: Joi.number().required(),
-    price: Joi.number().required(),
-    stock: Joi.number().required(),
-  }),
-};
-
 /**
  * Validate incoming HTTP requests with Joi through a middleware.
- * @param {Joi.ObjectSchema} schema
+ * @param {import("joi").ObjectSchema} schema
  */
 const validate = (schema) => {
   /**
@@ -51,8 +21,4 @@ const validate = (schema) => {
   };
 };
 
-module.exports = {
-  categorySchema,
-  productSchema,
-  validate,
-};
+module.exports = validate;

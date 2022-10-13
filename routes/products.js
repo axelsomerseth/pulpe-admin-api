@@ -7,7 +7,8 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../handlers/products");
-const { productSchema, validate } = require("../middlewares/validate");
+const validate = require("../middlewares/validate");
+const productSchema = require("../schemas/products");
 
 router.get("/", listProducts);
 

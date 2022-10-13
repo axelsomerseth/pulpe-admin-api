@@ -7,7 +7,8 @@ const {
   updateCategory,
   deleteCategory,
 } = require("../handlers/categories");
-const { categorySchema, validate } = require("../middlewares/validate");
+const validate = require("../middlewares/validate");
+const categorySchema = require("../schemas/categories");
 
 router.get("/", listCategories);
 
