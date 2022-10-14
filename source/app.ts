@@ -1,5 +1,5 @@
 // import path from "path";
-import express, { Application } from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import logger from "morgan";
 import compression from "compression";
@@ -8,11 +8,11 @@ import compression from "compression";
 
 // import routes
 import indexRouter from "./routes/index";
-// const productsRouter = require("./routes/products");
-// const categoriesRouter = require("./routes/categories");
-// const viewsRouter = require("./routes/views");
+import categoriesRouter from "./routes/categories";
+import productsRouter from "./routes/products";
+// import viewsRouter from "./routes/views";
 
-const app: Application = express();
+const app: Express = express();
 
 // custom middleware
 // const requestTime = require("./middlewares/requestTime");
@@ -28,8 +28,8 @@ app.use(compression()); // 3rd party plugin: compresses all the responses
 
 // define routes
 app.use("/", indexRouter);
-// app.use("/products", productsRouter);
-// app.use("/categories", categoriesRouter);
+app.use("/products", productsRouter);
+app.use("/categories", categoriesRouter);
 
 // static files
 // app.use("/static", express.static(path.join(__dirname, "public")));
