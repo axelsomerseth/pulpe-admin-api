@@ -1,14 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const {
+import express, { Router } from "express";
+import {
   listProducts,
   readProduct,
   createProduct,
   updateProduct,
   deleteProduct,
-} = require("../handlers/products");
-const validate = require("../middlewares/validate");
-const productSchema = require("../schemas/products");
+} from "../handlers/products";
+import validate from "../middlewares/validate";
+import productSchema from "../schemas/products";
+
+const router: Router = express.Router();
 
 router.get("/", listProducts);
 
@@ -20,4 +21,4 @@ router.put("/:productId", validate(productSchema.update), updateProduct);
 
 router.delete("/:productId", deleteProduct);
 
-module.exports = router;
+export default router;

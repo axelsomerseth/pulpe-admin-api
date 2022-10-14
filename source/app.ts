@@ -1,5 +1,5 @@
 // import path from "path";
-import express, { Express } from "express";
+import express, { Application } from "express";
 import cors from "cors";
 import logger from "morgan";
 import compression from "compression";
@@ -12,7 +12,7 @@ import indexRouter from "./routes/index";
 // const categoriesRouter = require("./routes/categories");
 // const viewsRouter = require("./routes/views");
 
-const app: Express = express();
+const app: Application = express();
 
 // custom middleware
 // const requestTime = require("./middlewares/requestTime");

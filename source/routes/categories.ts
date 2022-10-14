@@ -1,15 +1,13 @@
-// const express = require("express");
 import express, { Router } from "express";
-
-const {
+import {
   listCategories,
   readCategory,
   createCategory,
   updateCategory,
   deleteCategory,
-} = require("../handlers/categories");
-const validate = require("../middlewares/validate");
-const categorySchema = require("../schemas/categories");
+} from "../handlers/categories";
+import validate from "../middlewares/validate";
+import categorySchema from "../schemas/categories";
 
 const router: Router = express.Router();
 
@@ -23,4 +21,4 @@ router.put("/:categoryId", validate(categorySchema.update), updateCategory);
 
 router.delete("/:categoryId", deleteCategory);
 
-module.exports = router;
+export default router;
