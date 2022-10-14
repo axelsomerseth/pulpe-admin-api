@@ -1,10 +1,5 @@
 const categoriesRepository = require("../repository/categories");
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- * @param {import("express").NextFunction} next
- */
 const listCategories = async (req, res, next) => {
   const page = parseInt(req.query.page || 1);
   const size = parseInt(req.query.size || 10);
@@ -16,10 +11,6 @@ const listCategories = async (req, res, next) => {
   });
 };
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- */
 const readCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   const found = await categoriesRepository.getCategoryById(categoryId);
@@ -31,10 +22,6 @@ const readCategory = async (req, res) => {
   }
 };
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- */
 const createCategory = async (req, res) => {
   const newCategory = {
     name: req.body.name,
@@ -50,10 +37,6 @@ const createCategory = async (req, res) => {
   }
 };
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- */
 const updateCategory = async (req, res) => {
   const editedCategory = {
     id: parseInt(req.params.categoryId),
@@ -68,10 +51,6 @@ const updateCategory = async (req, res) => {
   }
 };
 
-/**
- * @param {import("express").Request} req
- * @param {import("express").Response} res
- */
 const deleteCategory = async (req, res) => {
   const categoryId = req.params.categoryId;
   const deleted = await categoriesRepository.deleteCategory(categoryId);

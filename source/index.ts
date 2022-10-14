@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import http from "http";
+import * as http from "http";
 import app from "./app";
 
 const port = process.env.PORT || 5000;
