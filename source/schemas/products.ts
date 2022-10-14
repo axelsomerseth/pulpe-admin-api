@@ -1,4 +1,4 @@
-const Joi = require("joi");
+import Joi from "../../node_modules/joi/lib/index";
 
 const productSchema = {
   create: Joi.object({
@@ -17,4 +17,4 @@ const productSchema = {
   }),
 };
 
-module.exports = productSchema;
+export default productSchema;
