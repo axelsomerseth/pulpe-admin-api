@@ -1,5 +1,6 @@
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+import express, { Router } from "express";
+
 const {
   listCategories,
   readCategory,
@@ -9,6 +10,8 @@ const {
 } = require("../handlers/categories");
 const validate = require("../middlewares/validate");
 const categorySchema = require("../schemas/categories");
+
+const router: Router = express.Router();
 
 router.get("/", listCategories);
 
